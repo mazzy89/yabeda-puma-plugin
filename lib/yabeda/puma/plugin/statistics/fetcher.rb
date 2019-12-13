@@ -15,7 +15,7 @@ module Yabeda
               s = UNIXSocket.new(path)
             elsif control_url.start_with? "tcp://"
               host, port = control_url.match(/^tcp:\/\/([a-z0-9\-._~%]+):([0-9]+)/).captures
-              s = TCPSocket.new(host, port)
+              s = TCPSocket.new(host, port.to_i)
             else
               raise ArgumentError("Unknown puma control url type #{control_url}")
             end
